@@ -25,13 +25,22 @@ export const api = createApi({
     }),
     getCustomers: build.query({
       query: () => "client/customers",
-      providesTags: ["Customers"]
-    })
+      providesTags: ["Customers"],
+    }),
+    getTransactions: build.query({
+      query: ({ page, pageSize, sort, search }) => ({
+        url: "client/transactions",
+        method: "GET",
+        params: { page, pageSize, sort, search },
+      }),
+      providesTags: ["Transactions"],
+    }),
   }),
 });
 
-export const { 
+export const {
   useGetUserQuery,
-  useGetProductsQuery, 
-  useGetCustomersQuery
+  useGetProductsQuery,
+  useGetCustomersQuery,
+  useGetTransactionsQuery,
 } = api;
